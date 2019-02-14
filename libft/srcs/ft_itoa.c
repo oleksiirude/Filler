@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 static	char	*ft_filler(int size, unsigned int nbig, char *str)
 {

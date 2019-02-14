@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 long long			ft_cast_given_mod_s(t_pmts *pmts, long long res)
 {

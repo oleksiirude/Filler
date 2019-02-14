@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 t_prts	*ft_create_str_c(t_prts **node, int value, int res, int sign)
 {

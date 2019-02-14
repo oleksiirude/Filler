@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 t_prts	*ft_create_str_perc(t_prts **node, size_t value, int sign)
 {

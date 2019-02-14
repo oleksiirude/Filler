@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 t_prts	*ft_handle_x_zv(t_pmts pmts, t_prts **node, char *res)
 {

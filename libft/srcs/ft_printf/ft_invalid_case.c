@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 t_prts	*ft_create_inv_str(t_prts **node, int value, int inv, int sign)
 {

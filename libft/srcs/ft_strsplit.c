@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 static char	**ft_filler2arr(char **str, char const *s, char c, size_t i)
 {

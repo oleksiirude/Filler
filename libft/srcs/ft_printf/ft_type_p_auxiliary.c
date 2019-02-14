@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 void	ft_helper_type_p(t_pmts *p, size_t l, char **s, t_prts **n)
 {

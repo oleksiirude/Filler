@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 size_t	ft_work_with_zero_value(t_pmts *pmts, size_t len)
 {

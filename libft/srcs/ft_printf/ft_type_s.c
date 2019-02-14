@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 static t_prts	*ft_form_case1(t_prts **node, t_pmts pmts, char *res, size_t lf)
 {

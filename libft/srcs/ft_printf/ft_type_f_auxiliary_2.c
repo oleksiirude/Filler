@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../inc/ft_printf.h"
 
 void	ft_set_f_flags_3(t_pmts *pmts, int *mns, char c, size_t len)
 {
