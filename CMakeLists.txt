@@ -106,5 +106,5 @@ add_executable(Filler ${LIB} main.c filler.h
         libft/srcs/ft_printf/ft_type_x_auxiliary.c
         libft/srcs/ft_printf/ft_type_r.c
         libft/srcs/ft_printf/ft_type_r_auxiliary.c
-        libft/srcs/ft_printf/ft_valid_case.c)
+        libft/srcs/ft_printf/ft_valid_case.c auxiliary.c)
 link_libraries(libft/libft.a)

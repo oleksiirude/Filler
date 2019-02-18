@@ -80,6 +80,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/auxiliary.c">
+			<Option target="Filler"/>
+		</Unit>
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/filler.h">
 			<Option target="Filler"/>
 		</Unit>

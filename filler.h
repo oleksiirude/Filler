@@ -4,21 +4,23 @@
 #include "libft/inc/libft.h"
 #include <fcntl.h>
 
-#define P1 1
-#define P2 0
+#define P1 0
+#define P2 1
 
-typedef struct		s_map
+typedef struct		s_ps
 {
-	char			**board;
-	int				h;
-	int 			w;
-}					t_map;
+	int				height;
+	int				width;
+	int				player;
+}					t_ps;
 
 typedef struct		s_token
 {
 	char			**token;
-	int				h;
-	int 			w;
+	int				height;
+	int 			width;
 }					t_token;
 
 #endif
+
+int ft_atoi_ptr(char **str);

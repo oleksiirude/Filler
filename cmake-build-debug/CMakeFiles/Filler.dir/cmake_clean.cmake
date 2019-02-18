@@ -102,6 +102,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_type_r.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_type_r_auxiliary.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_valid_case.c.o"
+  "CMakeFiles/Filler.dir/auxiliary.c.o"
   "Filler.pdb"
   "Filler"
 )
