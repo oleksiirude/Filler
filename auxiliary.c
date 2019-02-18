@@ -12,7 +12,41 @@
 
 #include "filler.h"
 
-int	ft_atoi_ptr(char **str)
+int 	*ft_str_to_int_conv(char *line, t_ps psz)
+{
+	int i;
+	int *row;
+
+	i = 0;
+	row = (int*)malloc(sizeof(int) * psz.width);
+//	ft_printf("1line->%s\n", line);
+	while (i < psz.width)
+	{
+		if (line[i] == '.')
+			row[i] = 0;
+		else if (line[i] == 'O')
+			row[i] = O;
+		else if (line[i] == 'X')
+			row[i] = X;
+		i++;
+	}
+	i = 0;
+	while (i < psz.width)
+	{
+		ft_printf("% d", row[i]);
+		i++;
+	}
+	ft_printf("\n");
+	return (row);
+}
+
+void	ft_go_next_line(char **line)
+{
+	get_next_line(0, line);
+	free(*line);
+}
+
+int		ft_atoi_ptr(char **str)
 {
 	int	res;
 

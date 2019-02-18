@@ -1,51 +1,62 @@
-#include "filler.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: olrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/18 11:52:30 by olrudenk          #+#    #+#             */
+/*   Updated: 2019/02/18 20:00:03 by olrudenk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_token	*ft_get_token(char **line, t_ps pl_sz)
+#include "filler.h"
+
+t_token	*ft_get_token(char **line)
 {
 	int		i;
+	char	*tmp;
 	t_token	*piece;
 
 	piece = (t_token*)malloc(sizeof(t_token));
 	get_next_line(0, line);
-	piece->height = ft_atoi_ptr(&line[6]);
+	tmp = *line;
+	*line += 6;
+	piece->height = ft_atoi_ptr(line);
 	piece->width = ft_atoi_ptr(line);
 	piece->token = (char**)malloc(sizeof(char*) * (piece->height + 1));
 	piece->token[piece->height] = 0;
-	free(line);
+	free(tmp);
 	i = -1;
 	while (++i < piece->height)
 	{
 		get_next_line(0, line);
 		piece->token[i] = ft_strsub_free(*line, 0, ft_strlen(*line));
 	}
-	piece->token[i] = 0;
 	return (piece);
 }
 
-char	**ft_get_map(char **line, t_ps pl_sz)
+int		**ft_get_map(char **line, t_ps psz)
 {
-	int		i;
-	char	**map;
+	int	i;
+	int	**mtrx;
 
 	i = -1;
-	map = (char**)malloc(sizeof(char *) * (pl_sz.height));
-	get_next_line(0, line);
-	free(*line);
-	while (++i < pl_sz.height)
+	mtrx = (int**)malloc(sizeof(int*) * (psz.height));
+	while (++i < psz.height)
 	{
 		get_next_line(0, line);
-		map[i] = ft_strsub_free(*line, 4, (size_t)pl_sz.width);
+		*line = ft_strsub_free(*line, 4, (size_t)psz.width);
+		mtrx[i] = ft_str_to_int_conv(*line, psz);
+		free(*line);
 	}
-	map[i] = 0;
-	return (map);
+	return (mtrx);
 }
 
-t_ps	ft_get_player_and_size(char **line)
+t_ps	ft_get_player(char **line)
 {
-	char 	*tmp;
 	int		sign;
-	t_ps	pl_sz;
+	t_ps	psz;
 
 	sign = 0;
 	get_next_line(0, line);
@@ -53,44 +64,46 @@ t_ps	ft_get_player_and_size(char **line)
 		sign = 1;
 	free(*line);
 	if (sign)
-		pl_sz.player = P1;
+		psz.player = P1;
 	else
-		pl_sz.player = P2;
-	ft_printf("Your players is %d\n", pl_sz.player);
+		psz.player = P2;
+	return (psz);
+}
+
+t_ps	ft_get_map_size(char **line, t_ps psz)
+{
+	char *tmp;
+
 	get_next_line(0, line);
 	tmp = *line;
 	*line += 8;
-	pl_sz.height = ft_atoi_ptr(line);
-	pl_sz.width = ft_atoi_ptr(line);
+	psz.height = ft_atoi_ptr(line);
+	psz.width = ft_atoi_ptr(line);
 	free(tmp);
-	ft_printf("Plateau is %dx%d\n", pl_sz.height, pl_sz.width);
-	return (pl_sz);
+	return (psz);
 }
 
 int		main(void)
 {
-	int			i;
-	char		**map;
-	char 		*line;
-	t_ps		pl_sz;
-	t_token		*token;
+	t_ps	psz;
+	t_token	*token;
+	int		sign;
+	int		**mtrx;
+	char	*line;
 
-	pl_sz = ft_get_player_and_size(&line);
-	map = ft_get_map(&line, pl_sz);
-	token = ft_get_token(&line, pl_sz);
-	i = 0;
-	while (map[i])
+	sign = 0;
+	psz = ft_get_player(&line);
+	while (42)
 	{
-		ft_printf("%s\n", map[i]);
-		i++;
+		if (!sign)
+			psz = ft_get_map_size(&line, psz);
+		else
+			ft_go_next_line(&line);
+		ft_go_next_line(&line);
+		mtrx = ft_get_map(&line, psz);
+		token = ft_get_token(&line);
+		sign = 1;
 	}
-	i = 0;
-	while (token->token[i])
-	{
-		ft_printf("%s\n", token->token[i]);
-		i++;
-	}
-	ft_printf("To be continued...");
 //	system("leaks -q Filler");
 	return (0);
 }
