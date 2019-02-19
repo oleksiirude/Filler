@@ -19,7 +19,6 @@ int 	*ft_str_to_int_conv(char *line, t_ps psz)
 
 	i = 0;
 	row = (int*)malloc(sizeof(int) * psz.width);
-//	ft_printf("1line->%s\n", line);
 	while (i < psz.width)
 	{
 		if (line[i] == '.')
@@ -30,13 +29,6 @@ int 	*ft_str_to_int_conv(char *line, t_ps psz)
 			row[i] = X;
 		i++;
 	}
-	i = 0;
-	while (i < psz.width)
-	{
-		ft_printf("% d", row[i]);
-		i++;
-	}
-	ft_printf("\n");
 	return (row);
 }
 
