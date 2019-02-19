@@ -37,6 +37,6 @@ typedef struct		s_token
 }					t_token;
 
 int		ft_atoi_ptr(char **str);
-void	ft_go_next_line(char **line);
+void	ft_go_next_line(char **line, int fd);
 int 	*ft_str_to_int_conv(char *line, t_ps psz);
 #endif

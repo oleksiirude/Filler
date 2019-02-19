@@ -27,14 +27,20 @@ int 	*ft_str_to_int_conv(char *line, t_ps psz)
 			row[i] = O;
 		else if (line[i] == 'X')
 			row[i] = X;
+		else if (line[i] == 'o')
+			row[i] = -3;
+		else if (line[i] == 'x')
+			row[i] = -4;
+		printf("%2d", row[i]);
 		i++;
 	}
+	printf("\n");
 	return (row);
 }
 
-void	ft_go_next_line(char **line)
+void	ft_go_next_line(char **line, int fd)
 {
-	get_next_line(0, line);
+	get_next_line(fd, line);
 	free(*line);
 }
 
