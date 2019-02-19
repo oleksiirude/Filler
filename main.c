@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-int 	ft_check_row(char *str)
+int 	ft_check_row(char *str, int *pos)
 {
 	int i;
 
@@ -20,37 +20,55 @@ int 	ft_check_row(char *str)
 	while (str[i])
 	{
 		if (str[i] == '*')
+		{
+			while (str[i] == '*')
+				i++;
+			if (i > *pos)
+				*pos = i;
 			return (1);
+		}
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_cut_width(t_token **piece)
+{
+	int i;
+
+	i = 0;
+//	printf("(*piece)->height[%d]\n", (*piece)->height);
+	while (i < (*piece)->height)
+	{
+		(*piece)->token[i][(*piece)->width] = 0;
+		i++;
+	}
 }
 
 t_token *ft_cut_token(t_token *piece)
 {
 	int i;
 	int counter;
+	int max_star_pos;
 
 	i = 0;
 	counter = 0;
-	while (!ft_check_row(piece->token[i]))
+	max_star_pos = 0;
+	while (!ft_check_row(piece->token[i], &max_star_pos))
 	{
 		counter++;
 		i++;
 	}
-	while (piece->token[i] && ft_check_row(piece->token[i++]))
-	{
+	while (piece->token[i] && ft_check_row(piece->token[i++], &max_star_pos))
 		counter++;
-//		i++;
-	}
 	while (piece->token[i])
-	{
 		free(piece->token[i++]);
-//		i++;
-	}
+//	printf("maximum * position is %d\n", max_star_pos);
+	piece->width = max_star_pos;
 	piece->height = counter;
-	printf("h->%d, w->%d\n", piece->height, piece->width);
+//	printf("h->%d, w->%d\n", piece->height, piece->width);
 	piece->token[counter] = 0;
+	ft_cut_width(&piece);
 	return (piece);
 }
 
@@ -77,11 +95,13 @@ t_token	*ft_get_token(char **line, int fd)
 		piece->token[i] = ft_strsub_free(*line, 0, ft_strlen(*line));
 	}
 	piece->token[piece->height] = 0;
+	printf("before h[%d], w[%d]\n", piece->height, piece->width);
 	piece = ft_cut_token(piece);
 	i = 0;
 	while (i < piece->height)
 		printf("%s\n", piece->token[i++]);
 	printf("last%s\n", piece->token[i]);
+	printf("after h[%d], w[%d]\n", piece->height, piece->width);
 	return (piece);
 }
 
@@ -144,7 +164,7 @@ int		main(void)
 	int		**mtrx;
 	char	*line;
 
-	fd = open("../map02", O_RDWR);
+	fd = open("../map00", O_RDWR);
 	sign = 0;
 	psz = ft_get_player(&line, fd);
 	while (get_next_line(fd, &line) > 0)
