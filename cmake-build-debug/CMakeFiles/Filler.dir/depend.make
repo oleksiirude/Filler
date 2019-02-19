@@ -6,6 +6,16 @@ CMakeFiles/Filler.dir/auxiliary.c.o: ../filler.h
 CMakeFiles/Filler.dir/auxiliary.c.o: ../libft/inc/ft_printf.h
 CMakeFiles/Filler.dir/auxiliary.c.o: ../libft/inc/libft.h
 
+CMakeFiles/Filler.dir/free.c.o: ../filler.h
+CMakeFiles/Filler.dir/free.c.o: ../free.c
+CMakeFiles/Filler.dir/free.c.o: ../libft/inc/ft_printf.h
+CMakeFiles/Filler.dir/free.c.o: ../libft/inc/libft.h
+
+CMakeFiles/Filler.dir/game.c.o: ../filler.h
+CMakeFiles/Filler.dir/game.c.o: ../game.c
+CMakeFiles/Filler.dir/game.c.o: ../libft/inc/ft_printf.h
+CMakeFiles/Filler.dir/game.c.o: ../libft/inc/libft.h
+
 CMakeFiles/Filler.dir/libft/srcs/ft_atoi.c.o: ../libft/inc/ft_printf.h
 CMakeFiles/Filler.dir/libft/srcs/ft_atoi.c.o: ../libft/inc/libft.h
 CMakeFiles/Filler.dir/libft/srcs/ft_atoi.c.o: ../libft/srcs/ft_atoi.c

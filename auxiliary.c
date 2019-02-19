@@ -12,7 +12,56 @@
 
 #include "filler.h"
 
-int 	*ft_str_to_int_conv(char *line, t_ps psz)
+int		ft_check_row(char *str, int *pos)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '*')
+		{
+			while (str[i] == '*')
+				i++;
+			if (i > *pos)
+				*pos = i;
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+t_psz	ft_get_player(char **line, int fd)
+{
+	int		sign;
+	t_psz	psz;
+
+	sign = 0;
+	get_next_line(fd, line);
+	if (line[0][10] == '1')
+		sign = 1;
+	free(*line);
+	if (sign)
+		psz.player = P1;
+	else
+		psz.player = P2;
+	return (psz);
+}
+
+t_psz	ft_get_map_size(char **line, t_psz psz)
+{
+	char *tmp;
+
+	tmp = *line;
+	*line += 8;
+	psz.height = ft_atoi_ptr(line);
+	psz.width = ft_atoi_ptr(line);
+	free(tmp);
+	return (psz);
+}
+
+int		*ft_str_to_int_conv(char *line, t_psz psz)
 {
 	int i;
 	int *row;
@@ -23,25 +72,13 @@ int 	*ft_str_to_int_conv(char *line, t_ps psz)
 	{
 		if (line[i] == '.')
 			row[i] = 0;
-		else if (line[i] == 'O')
+		else if (line[i] == 'O' || line[i] == 'o')
 			row[i] = O;
-		else if (line[i] == 'X')
+		else if (line[i] == 'X' || line[i] == 'x')
 			row[i] = X;
-		else if (line[i] == 'o')
-			row[i] = -3;
-		else if (line[i] == 'x')
-			row[i] = -4;
-		printf("%2d", row[i]);
 		i++;
 	}
-	printf("\n");
 	return (row);
-}
-
-void	ft_go_next_line(char **line, int fd)
-{
-	get_next_line(fd, line);
-	free(*line);
 }
 
 int		ft_atoi_ptr(char **str)

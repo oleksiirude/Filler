@@ -150,6 +150,60 @@ auxiliary.c.s:
 	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/auxiliary.c.s
 .PHONY : auxiliary.c.s
 
+free.o: free.c.o
+
+.PHONY : free.o
+
+# target to build an object file
+free.c.o:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/free.c.o
+.PHONY : free.c.o
+
+free.i: free.c.i
+
+.PHONY : free.i
+
+# target to preprocess a source file
+free.c.i:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/free.c.i
+.PHONY : free.c.i
+
+free.s: free.c.s
+
+.PHONY : free.s
+
+# target to generate assembly for a file
+free.c.s:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/free.c.s
+.PHONY : free.c.s
+
+game.o: game.c.o
+
+.PHONY : game.o
+
+# target to build an object file
+game.c.o:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/game.c.o
+.PHONY : game.c.o
+
+game.i: game.c.i
+
+.PHONY : game.i
+
+# target to preprocess a source file
+game.c.i:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/game.c.i
+.PHONY : game.c.i
+
+game.s: game.c.s
+
+.PHONY : game.s
+
+# target to generate assembly for a file
+game.c.s:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/game.c.s
+.PHONY : game.c.s
+
 libft/srcs/ft_atoi.o: libft/srcs/ft_atoi.c.o
 
 .PHONY : libft/srcs/ft_atoi.o
@@ -2943,6 +2997,12 @@ help:
 	@echo "... auxiliary.o"
 	@echo "... auxiliary.i"
 	@echo "... auxiliary.s"
+	@echo "... free.o"
+	@echo "... free.i"
+	@echo "... free.s"
+	@echo "... game.o"
+	@echo "... game.i"
+	@echo "... game.s"
 	@echo "... libft/srcs/ft_atoi.o"
 	@echo "... libft/srcs/ft_atoi.i"
 	@echo "... libft/srcs/ft_atoi.s"

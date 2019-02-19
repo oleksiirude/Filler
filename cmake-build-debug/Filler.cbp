@@ -86,6 +86,12 @@
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/filler.h">
 			<Option target="Filler"/>
 		</Unit>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/free.c">
+			<Option target="Filler"/>
+		</Unit>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/game.c">
+			<Option target="Filler"/>
+		</Unit>
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_atoi.c">
 			<Option target="Filler"/>
 		</Unit>

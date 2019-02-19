@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,36 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_FILLER_H
-#define FILLER_FILLER_H
+#include "filler.h"
 
-#include "libft/inc/libft.h"
-#include <fcntl.h>
-#include <stdio.h>
-
-#define P1 0
-#define P2 1
-#define O -1
-#define X -2
-
-typedef struct		s_psz
+void	ft_free_allocated_stuff(int **mtrx, t_token *token, t_psz psz)
 {
-	int				height;
-	int				width;
-	int				player;
-}					t_psz;
+	int i;
 
-typedef struct		s_token
-{
-	char			**token;
-	int				height;
-	int 			width;
-}					t_token;
-
-int		ft_atoi_ptr(char **str);
-int 	*ft_str_to_int_conv(char *line, t_psz psz);
-t_psz	ft_get_player(char **line, int fd);
-t_psz	ft_get_map_size(char **line, t_psz psz);
-int		ft_check_row(char *str, int *pos);
-void	ft_free_allocated_stuff(int **mtrx, t_token *token, t_psz psz);
-#endif
+	i = -1;
+	while (++i < psz.height)
+		free(mtrx[i]);
+	free(mtrx);
+	i = -1;
+	while (++i < token->height)
+		free(token->token[i]);
+	free(token->token);
+	free(token);
+}
