@@ -12,16 +12,16 @@
 
 #include "filler.h"
 
-void	ft_free_allocated_stuff(int **mtrx, t_token *token, t_psz psz)
+void	ft_free_allocated_stuff(t_data *board, t_token *token)
 {
 	int i;
 
 	i = -1;
-	while (++i < psz.height)
-		free(mtrx[i]);
-	free(mtrx);
+	while (++i < board->y)
+		free(board->map[i]);
+	free(board->map);
 	i = -1;
-	while (++i < token->height)
+	while (++i < token->y)
 		free(token->token[i]);
 	free(token->token);
 	free(token);

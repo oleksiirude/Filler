@@ -12,3 +12,12 @@
 
 #include "filler.h"
 
+void	lets_play(t_data *board, t_token *token)
+{
+
+	t_reply reply;
+
+	reply.x = 0;
+	reply.y = 0;
+	while (map)
+}

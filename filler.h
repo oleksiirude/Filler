@@ -17,29 +17,37 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#define P1 0
-#define P2 1
+#define P1 1
+#define P2 2
 #define O -1
 #define X -2
-
-typedef struct		s_psz
-{
-	int				height;
-	int				width;
-	int				player;
-}					t_psz;
 
 typedef struct		s_token
 {
 	char			**token;
-	int				height;
-	int 			width;
+	int 			x;
+	int				y;
 }					t_token;
 
+typedef struct		s_data
+{
+	int				x;
+	int				y;
+	int 			**map;
+	int				player;
+}					t_data;
+
+typedef struct		s_reply
+{
+	int 			x;
+	int				y;
+}					t_reply;
+
 int		ft_atoi_ptr(char **str);
-int 	*ft_str_to_int_conv(char *line, t_psz psz);
-t_psz	ft_get_player(char **line, int fd);
-t_psz	ft_get_map_size(char **line, t_psz psz);
+int 	*ft_str_to_int_conv(char *line, t_data *board);
+void	ft_get_player(char **line, t_data **board, int fd);
+void	ft_get_map_size(char **line, t_data **board);
 int		ft_check_row(char *str, int *pos);
-void	ft_free_allocated_stuff(int **mtrx, t_token *token, t_psz psz);
+void	ft_free_allocated_stuff(t_data *board, t_token *token);
+void	lets_play(t_data *board, t_token *token);
 #endif

@@ -32,10 +32,9 @@ int		ft_check_row(char *str, int *pos)
 	return (0);
 }
 
-t_psz	ft_get_player(char **line, int fd)
+void	ft_get_player(char **line, t_data **board, int fd)
 {
 	int		sign;
-	t_psz	psz;
 
 	sign = 0;
 	get_next_line(fd, line);
@@ -43,32 +42,30 @@ t_psz	ft_get_player(char **line, int fd)
 		sign = 1;
 	free(*line);
 	if (sign)
-		psz.player = P1;
+		(*board)->player = P1;
 	else
-		psz.player = P2;
-	return (psz);
+		(*board)->player = P2;
 }
 
-t_psz	ft_get_map_size(char **line, t_psz psz)
+void	ft_get_map_size(char **line, t_data **board)
 {
 	char *tmp;
 
 	tmp = *line;
 	*line += 8;
-	psz.height = ft_atoi_ptr(line);
-	psz.width = ft_atoi_ptr(line);
+	(*board)->y = ft_atoi_ptr(line);
+	(*board)->x = ft_atoi_ptr(line);
 	free(tmp);
-	return (psz);
 }
 
-int		*ft_str_to_int_conv(char *line, t_psz psz)
+int		*ft_str_to_int_conv(char *line, t_data *board)
 {
 	int i;
 	int *row;
 
 	i = 0;
-	row = (int*)malloc(sizeof(int) * psz.width);
-	while (i < psz.width)
+	row = (int*)malloc(sizeof(int) * board->x);
+	while (i < board->x)
 	{
 		if (line[i] == '.')
 			row[i] = 0;
