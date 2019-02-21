@@ -42,9 +42,15 @@ void	ft_get_player(char **line, t_data **board, int fd)
 		sign = 1;
 	free(*line);
 	if (sign)
+	{
 		(*board)->player = P1;
+		(*board)->enemy = P2;
+	}
 	else
+	{
 		(*board)->player = P2;
+		(*board)->enemy = P1;
+	}
 }
 
 void	ft_get_map_size(char **line, t_data **board)
@@ -67,14 +73,15 @@ int		*ft_str_to_int_conv(char *line, t_data *board)
 	row = (int*)malloc(sizeof(int) * board->x);
 	while (i < board->x)
 	{
-		if (line[i] == '.')
-			row[i] = 0;
-		else if (line[i] == 'O' || line[i] == 'o')
+		row[i] = 0;
+		if (line[i] == 'O' || line[i] == 'o')
 			row[i] = O;
 		else if (line[i] == 'X' || line[i] == 'x')
 			row[i] = X;
+		ft_printf("%3d", row[i]);
 		i++;
 	}
+	ft_printf("\n");
 	return (row);
 }
 

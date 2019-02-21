@@ -58,6 +58,10 @@ t_token	*ft_get_token(char **line, int fd)
 	}
 	token->token[token->y] = 0;
 	token = ft_cut_token(token);
+	i = -1;
+	ft_printf("Token:\n");
+	while (++i < token->y)
+		ft_printf("%s\n", token->token[i]);
 	return (token);
 }
 
@@ -71,7 +75,7 @@ int		**ft_get_map(char **line, t_data *board, int fd)
 	while (++i < board->y)
 	{
 		get_next_line(fd, line);
-		*line = ft_strsub_free(*line, 4, (size_t)board->y);
+		*line = ft_strsub_free(*line, 4, (size_t)board->x);
 		map[i] = ft_str_to_int_conv(*line, board);
 		free(*line);
 	}
@@ -86,7 +90,7 @@ int		main(void)
 	t_data	*board;
 	t_token	*token;
 
-	fd = open("../map02", O_RDWR);
+	fd = open("../map00", O_RDWR);
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));
 	ft_get_player(&line, &board, fd);
@@ -105,6 +109,6 @@ int		main(void)
 		sign = 1;
 	}
 	free(board);
-	system("leaks -q Filler");
+//	system("leaks -q Filler");
 	return (0);
 }

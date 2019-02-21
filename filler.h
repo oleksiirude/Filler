@@ -17,31 +17,38 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#define P1 1
-#define P2 2
+#define P1 -1
+#define P2 -2
 #define O -1
 #define X -2
 
 typedef struct		s_token
 {
 	char			**token;
-	int 			x;
 	int				y;
+	int 			x;
 }					t_token;
 
 typedef struct		s_data
 {
-	int				x;
 	int				y;
+	int				x;
 	int 			**map;
 	int				player;
+	int				enemy;
 }					t_data;
 
 typedef struct		s_reply
 {
-	int 			x;
 	int				y;
+	int 			x;
 }					t_reply;
+
+typedef struct		s_crd
+{
+	int				y;
+	int 			x;
+}					t_crd;
 
 int		ft_atoi_ptr(char **str);
 int 	*ft_str_to_int_conv(char *line, t_data *board);
