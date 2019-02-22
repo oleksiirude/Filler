@@ -36,9 +36,9 @@ void	lets_play(t_data *board, t_token *token)
 	overlap = 0;
 	reply.y = 0;
 	reply.x = 0;
-	ft_printf("y[%d], x[%d]\n\n", token->y, token->x);
-	ft_printf("Player: %d\n", board->player);
-	ft_printf("Enemy: %d\n\n", board->enemy);
+//	ft_printf("y[%d], x[%d]\n\n", token->y, token->x);
+//	ft_printf("Player: %d\n", board->player);
+//	ft_printf("Enemy: %d\n\n", board->enemy);
 	while (y + (token->y - 1) < board->y)
 	{
 		reply.y = y;
@@ -55,7 +55,7 @@ void	lets_play(t_data *board, t_token *token)
 					else if (board->map[m.y][m.x] == board->enemy && token->token[t.y][t.x] == '*')
 					{
 						overlap = 0;
-						sign = 1;
+						error = 1;
 						break;
 					}
 					t.x++;
@@ -64,19 +64,22 @@ void	lets_play(t_data *board, t_token *token)
 				m.y++;
 				t.y++;
 				t.x = 0;
-				if (sign)
+				if (error)
 					break ;
 			}
 			if (overlap == 1)
 			{
-				printf("Reply: y-%d, x->%d\n", y, x);
-				exit(0);
+				ft_printf("%d %d\n", y, x);
+				sign = 1;
+				break ;
 			}
 			x++;
 			m.y = y;
 			t.y = 0;
 			overlap = 0;
 		}
+		if (sign)
+			break ;
 		y++;
 		m.y = y;
 		x = 0;

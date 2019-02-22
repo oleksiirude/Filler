@@ -58,10 +58,10 @@ t_token	*ft_get_token(char **line, int fd)
 	}
 	token->token[token->y] = 0;
 	token = ft_cut_token(token);
-	i = -1;
-	ft_printf("Token:\n");
-	while (++i < token->y)
-		ft_printf("%s\n", token->token[i]);
+//	i = -1;
+//	ft_printf("Token:\n");
+//	while (++i < token->y)
+//		ft_printf("%s\n", token->token[i]);
 	return (token);
 }
 
@@ -90,7 +90,8 @@ int		main(void)
 	t_data	*board;
 	t_token	*token;
 
-	fd = open("../map00", O_RDWR);
+//	fd = open("../map00", O_RDWR);
+	fd = 0;
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));
 	ft_get_player(&line, &board, fd);

@@ -78,10 +78,10 @@ int		*ft_str_to_int_conv(char *line, t_data *board)
 			row[i] = O;
 		else if (line[i] == 'X' || line[i] == 'x')
 			row[i] = X;
-		ft_printf("%3d", row[i]);
+//		ft_printf("%3d", row[i]);
 		i++;
 	}
-	ft_printf("\n");
+//	ft_printf("\n");
 	return (row);
 }
 
