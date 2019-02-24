@@ -37,8 +37,10 @@ void	lets_play(t_data *board, t_token *token)
 	reply.y = 0;
 	reply.x = 0;
 //	ft_printf("y[%d], x[%d]\n\n", token->y, token->x);
-//	ft_printf("Player: %d\n", board->player);
-//	ft_printf("Enemy: %d\n\n", board->enemy);
+	if (board->player == -1)
+		ft_printf("Player: %d[%c]\n", board->player, 'O');
+	else
+		ft_printf("Player: %d[%c]\n", board->player, 'X');
 	while (y + (token->y - 1) < board->y)
 	{
 		reply.y = y;
@@ -69,7 +71,7 @@ void	lets_play(t_data *board, t_token *token)
 			}
 			if (overlap == 1)
 			{
-				ft_printf("%d %d\n", y, x);
+				ft_printf("REPLY %d %d\n", y, x);
 				sign = 1;
 				break ;
 			}
@@ -77,6 +79,7 @@ void	lets_play(t_data *board, t_token *token)
 			m.y = y;
 			t.y = 0;
 			overlap = 0;
+			error = 0;
 		}
 		if (sign)
 			break ;
@@ -84,4 +87,6 @@ void	lets_play(t_data *board, t_token *token)
 		m.y = y;
 		x = 0;
 	}
+	if (!sign)
+		ft_printf("EXIT %d %d\n", 0, 0);
 }

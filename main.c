@@ -90,8 +90,8 @@ int		main(void)
 	t_data	*board;
 	t_token	*token;
 
-//	fd = open("../map00", O_RDWR);
-	fd = 0;
+	fd = open("../map01", O_RDWR);
+//	fd = 0;
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));
 	ft_get_player(&line, &board, fd);
