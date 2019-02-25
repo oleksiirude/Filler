@@ -72,6 +72,7 @@ int		**ft_get_map(char **line, t_data *board, int fd)
 
 	i = -1;
 	map = (int**)malloc(sizeof(int*) * (board->y));
+	board->overlap = 0;
 	while (++i < board->y)
 	{
 		get_next_line(fd, line);
@@ -90,8 +91,8 @@ int		main(void)
 	t_data	*board;
 	t_token	*token;
 
-	fd = open("../map01", O_RDWR);
-//	fd = 0;
+//	fd = open("../map01", O_RDWR);
+	fd = 0;
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));
 	ft_get_player(&line, &board, fd);

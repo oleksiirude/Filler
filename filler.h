@@ -36,19 +36,20 @@ typedef struct		s_data
 	int 			**map;
 	int				player;
 	int				enemy;
+	int				overlap;
 }					t_data;
-
-typedef struct		s_reply
-{
-	int				y;
-	int 			x;
-}					t_reply;
 
 typedef struct		s_crd
 {
 	int				y;
 	int 			x;
 }					t_crd;
+
+typedef struct		s_points
+{
+	struct s_crd    m;
+	struct s_crd    t;
+}					t_points;
 
 int		ft_atoi_ptr(char **str);
 int 	*ft_str_to_int_conv(char *line, t_data *board);
