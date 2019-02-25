@@ -12,77 +12,6 @@
 
 #include "filler.h"
 
-t_token	*ft_cut_token(t_token *token)
-{
-	int i;
-	int counter;
-	int max_star_pos;
-
-	i = -1;
-	counter = 0;
-	max_star_pos = 0;
-	while (!ft_check_row(token->token[++i], &max_star_pos))
-		counter++;
-	while (token->token[i] && ft_check_row(token->token[i++], &max_star_pos))
-		counter++;
-	while (token->token[i])
-		free(token->token[i++]);
-	token->x = max_star_pos;
-	token->y = counter;
-	free(token->token[counter]);
-	i = -1;
-	while (++i < token->y)
-		token->token[i][token->x] = 0;
-	return (token);
-}
-
-t_token	*ft_get_token(char **line, int fd)
-{
-	int		i;
-	char	*tmp;
-	t_token	*token;
-
-	token = (t_token*)malloc(sizeof(t_token));
-	get_next_line(fd, line);
-	tmp = *line;
-	*line += 6;
-	token->y = ft_atoi_ptr(line);
-	token->x = ft_atoi_ptr(line);
-	token->token = (char**)malloc(sizeof(char*) * (token->y + 1));
-	free(tmp);
-	i = -1;
-	while (++i < token->y)
-	{
-		get_next_line(fd, line);
-		token->token[i] = ft_strsub_free(*line, 0, ft_strlen(*line));
-	}
-	token->token[token->y] = 0;
-	token = ft_cut_token(token);
-//	i = -1;
-//	ft_printf("Token:\n");
-//	while (++i < token->y)
-//		ft_printf("%s\n", token->token[i]);
-	return (token);
-}
-
-int		**ft_get_map(char **line, t_data *board, int fd)
-{
-	int	i;
-	int	**map;
-
-	i = -1;
-	map = (int**)malloc(sizeof(int*) * (board->y));
-	board->overlap = 0;
-	while (++i < board->y)
-	{
-		get_next_line(fd, line);
-		*line = ft_strsub_free(*line, 4, (size_t)board->x);
-		map[i] = ft_str_to_int_conv(*line, board);
-		free(*line);
-	}
-	return (map);
-}
-
 int		main(void)
 {
 	int		fd;
@@ -91,7 +20,7 @@ int		main(void)
 	t_data	*board;
 	t_token	*token;
 
-//	fd = open("../map01", O_RDWR);
+//	fd = open("../map00", O_RDWR);
 	fd = 0;
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));

@@ -16,6 +16,16 @@ CMakeFiles/Filler.dir/game.c.o: ../game.c
 CMakeFiles/Filler.dir/game.c.o: ../libft/inc/ft_printf.h
 CMakeFiles/Filler.dir/game.c.o: ../libft/inc/libft.h
 
+CMakeFiles/Filler.dir/get_data.c.o: ../filler.h
+CMakeFiles/Filler.dir/get_data.c.o: ../get_data.c
+CMakeFiles/Filler.dir/get_data.c.o: ../libft/inc/ft_printf.h
+CMakeFiles/Filler.dir/get_data.c.o: ../libft/inc/libft.h
+
+CMakeFiles/Filler.dir/heatmap.c.o: ../filler.h
+CMakeFiles/Filler.dir/heatmap.c.o: ../heatmap.c
+CMakeFiles/Filler.dir/heatmap.c.o: ../libft/inc/ft_printf.h
+CMakeFiles/Filler.dir/heatmap.c.o: ../libft/inc/libft.h
+
 CMakeFiles/Filler.dir/libft/srcs/ft_atoi.c.o: ../libft/inc/ft_printf.h
 CMakeFiles/Filler.dir/libft/srcs/ft_atoi.c.o: ../libft/inc/libft.h
 CMakeFiles/Filler.dir/libft/srcs/ft_atoi.c.o: ../libft/srcs/ft_atoi.c
@@ -139,6 +149,14 @@ CMakeFiles/Filler.dir/libft/srcs/ft_memmove.c.o: ../libft/srcs/ft_memmove.c
 CMakeFiles/Filler.dir/libft/srcs/ft_memset.c.o: ../libft/inc/ft_printf.h
 CMakeFiles/Filler.dir/libft/srcs/ft_memset.c.o: ../libft/inc/libft.h
 CMakeFiles/Filler.dir/libft/srcs/ft_memset.c.o: ../libft/srcs/ft_memset.c
+
+CMakeFiles/Filler.dir/libft/srcs/ft_power.c.o: ../libft/inc/ft_printf.h
+CMakeFiles/Filler.dir/libft/srcs/ft_power.c.o: ../libft/inc/libft.h
+CMakeFiles/Filler.dir/libft/srcs/ft_power.c.o: ../libft/srcs/ft_power.c
+
+CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.o: ../libft/inc/ft_printf.h
+CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.o: ../libft/inc/libft.h
+CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.o: ../libft/srcs/ft_print_intarr.c
 
 CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_assembly.c.o: ../libft/inc/ft_printf.h
 CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_assembly.c.o: ../libft/inc/libft.h

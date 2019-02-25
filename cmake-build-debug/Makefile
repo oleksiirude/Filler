@@ -204,6 +204,60 @@ game.c.s:
 	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/game.c.s
 .PHONY : game.c.s
 
+get_data.o: get_data.c.o
+
+.PHONY : get_data.o
+
+# target to build an object file
+get_data.c.o:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/get_data.c.o
+.PHONY : get_data.c.o
+
+get_data.i: get_data.c.i
+
+.PHONY : get_data.i
+
+# target to preprocess a source file
+get_data.c.i:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/get_data.c.i
+.PHONY : get_data.c.i
+
+get_data.s: get_data.c.s
+
+.PHONY : get_data.s
+
+# target to generate assembly for a file
+get_data.c.s:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/get_data.c.s
+.PHONY : get_data.c.s
+
+heatmap.o: heatmap.c.o
+
+.PHONY : heatmap.o
+
+# target to build an object file
+heatmap.c.o:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/heatmap.c.o
+.PHONY : heatmap.c.o
+
+heatmap.i: heatmap.c.i
+
+.PHONY : heatmap.i
+
+# target to preprocess a source file
+heatmap.c.i:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/heatmap.c.i
+.PHONY : heatmap.c.i
+
+heatmap.s: heatmap.c.s
+
+.PHONY : heatmap.s
+
+# target to generate assembly for a file
+heatmap.c.s:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/heatmap.c.s
+.PHONY : heatmap.c.s
+
 libft/srcs/ft_atoi.o: libft/srcs/ft_atoi.c.o
 
 .PHONY : libft/srcs/ft_atoi.o
@@ -1040,6 +1094,60 @@ libft/srcs/ft_memset.s: libft/srcs/ft_memset.c.s
 libft/srcs/ft_memset.c.s:
 	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_memset.c.s
 .PHONY : libft/srcs/ft_memset.c.s
+
+libft/srcs/ft_power.o: libft/srcs/ft_power.c.o
+
+.PHONY : libft/srcs/ft_power.o
+
+# target to build an object file
+libft/srcs/ft_power.c.o:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_power.c.o
+.PHONY : libft/srcs/ft_power.c.o
+
+libft/srcs/ft_power.i: libft/srcs/ft_power.c.i
+
+.PHONY : libft/srcs/ft_power.i
+
+# target to preprocess a source file
+libft/srcs/ft_power.c.i:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_power.c.i
+.PHONY : libft/srcs/ft_power.c.i
+
+libft/srcs/ft_power.s: libft/srcs/ft_power.c.s
+
+.PHONY : libft/srcs/ft_power.s
+
+# target to generate assembly for a file
+libft/srcs/ft_power.c.s:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_power.c.s
+.PHONY : libft/srcs/ft_power.c.s
+
+libft/srcs/ft_print_intarr.o: libft/srcs/ft_print_intarr.c.o
+
+.PHONY : libft/srcs/ft_print_intarr.o
+
+# target to build an object file
+libft/srcs/ft_print_intarr.c.o:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.o
+.PHONY : libft/srcs/ft_print_intarr.c.o
+
+libft/srcs/ft_print_intarr.i: libft/srcs/ft_print_intarr.c.i
+
+.PHONY : libft/srcs/ft_print_intarr.i
+
+# target to preprocess a source file
+libft/srcs/ft_print_intarr.c.i:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.i
+.PHONY : libft/srcs/ft_print_intarr.c.i
+
+libft/srcs/ft_print_intarr.s: libft/srcs/ft_print_intarr.c.s
+
+.PHONY : libft/srcs/ft_print_intarr.s
+
+# target to generate assembly for a file
+libft/srcs/ft_print_intarr.c.s:
+	$(MAKE) -f CMakeFiles/Filler.dir/build.make CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.s
+.PHONY : libft/srcs/ft_print_intarr.c.s
 
 libft/srcs/ft_printf/ft_assembly.o: libft/srcs/ft_printf/ft_assembly.c.o
 
@@ -3003,6 +3111,12 @@ help:
 	@echo "... game.o"
 	@echo "... game.i"
 	@echo "... game.s"
+	@echo "... get_data.o"
+	@echo "... get_data.i"
+	@echo "... get_data.s"
+	@echo "... heatmap.o"
+	@echo "... heatmap.i"
+	@echo "... heatmap.s"
 	@echo "... libft/srcs/ft_atoi.o"
 	@echo "... libft/srcs/ft_atoi.i"
 	@echo "... libft/srcs/ft_atoi.s"
@@ -3096,6 +3210,12 @@ help:
 	@echo "... libft/srcs/ft_memset.o"
 	@echo "... libft/srcs/ft_memset.i"
 	@echo "... libft/srcs/ft_memset.s"
+	@echo "... libft/srcs/ft_power.o"
+	@echo "... libft/srcs/ft_power.i"
+	@echo "... libft/srcs/ft_power.s"
+	@echo "... libft/srcs/ft_print_intarr.o"
+	@echo "... libft/srcs/ft_print_intarr.i"
+	@echo "... libft/srcs/ft_print_intarr.s"
 	@echo "... libft/srcs/ft_printf/ft_assembly.o"
 	@echo "... libft/srcs/ft_printf/ft_assembly.i"
 	@echo "... libft/srcs/ft_printf/ft_assembly.s"

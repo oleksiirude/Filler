@@ -92,6 +92,12 @@
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/game.c">
 			<Option target="Filler"/>
 		</Unit>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/get_data.c">
+			<Option target="Filler"/>
+		</Unit>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/heatmap.c">
+			<Option target="Filler"/>
+		</Unit>
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_atoi.c">
 			<Option target="Filler"/>
 		</Unit>
@@ -183,6 +189,12 @@
 			<Option target="Filler"/>
 		</Unit>
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_memset.c">
+			<Option target="Filler"/>
+		</Unit>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_power.c">
+			<Option target="Filler"/>
+		</Unit>
+		<Unit filename="/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_print_intarr.c">
 			<Option target="Filler"/>
 		</Unit>
 		<Unit filename="/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_printf/ft_assembly.c">

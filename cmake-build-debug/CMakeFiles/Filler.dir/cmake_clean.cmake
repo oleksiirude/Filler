@@ -71,6 +71,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Filler.dir/libft/srcs/ft_tolower.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/ft_toupper.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/ft_swap.c.o"
+  "CMakeFiles/Filler.dir/libft/srcs/ft_power.c.o"
+  "CMakeFiles/Filler.dir/libft/srcs/ft_print_intarr.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/get_next_line.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_assembly.c.o"
   "CMakeFiles/Filler.dir/libft/srcs/ft_printf/ft_auxiliary.c.o"
@@ -105,6 +107,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Filler.dir/auxiliary.c.o"
   "CMakeFiles/Filler.dir/game.c.o"
   "CMakeFiles/Filler.dir/free.c.o"
+  "CMakeFiles/Filler.dir/get_data.c.o"
+  "CMakeFiles/Filler.dir/heatmap.c.o"
   "Filler.pdb"
   "Filler"
 )

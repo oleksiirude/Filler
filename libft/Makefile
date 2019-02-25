@@ -72,6 +72,8 @@ SRCS_LIB = 	ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c \
 		ft_swap.c \
+		ft_power.c \
+		ft_print_intarr.c \
 		get_next_line.c \
 
 SRCS_PF = ft_assembly.c \

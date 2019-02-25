@@ -108,6 +108,8 @@ int					ft_lstlen(t_list *head);
 char				*ft_itoa_base(int value, int base);
 char				*ft_itoa_base_ll_ed(long long value, int base);
 char				*ft_itoa_base_ull_ed(unsigned long long value, int base);
+int					ft_power(int nb, int pow);
+void				ft_print_intarr(int **arr, int h, int w);
 int					get_next_line(const int fd, char **line);
 
 #endif

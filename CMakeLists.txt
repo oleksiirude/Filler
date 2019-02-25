@@ -76,6 +76,8 @@ add_executable(Filler ${LIB} main.c filler.h
         libft/srcs/ft_tolower.c
         libft/srcs/ft_toupper.c
         libft/srcs/ft_swap.c
+        libft/srcs/ft_power.c
+        libft/srcs/ft_print_intarr.c
         libft/srcs/get_next_line.c
         libft/srcs/ft_printf/ft_assembly.c
         libft/srcs/ft_printf/ft_auxiliary.c
@@ -106,5 +108,5 @@ add_executable(Filler ${LIB} main.c filler.h
         libft/srcs/ft_printf/ft_type_x_auxiliary.c
         libft/srcs/ft_printf/ft_type_r.c
         libft/srcs/ft_printf/ft_type_r_auxiliary.c
-        libft/srcs/ft_printf/ft_valid_case.c auxiliary.c game.c free.c)
+        libft/srcs/ft_printf/ft_valid_case.c auxiliary.c game.c free.c get_data.c heatmap.c)
 link_libraries(libft/libft.a)
