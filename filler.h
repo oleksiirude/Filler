@@ -67,16 +67,18 @@ typedef struct		s_hm
 	struct s_hm		*next;
 }					t_hm;
 
-int		ft_atoi_ptr(char **str);
-int 	*ft_str_to_int_conv(char *line, t_data *board);
-void	ft_get_player(char **line, t_data **board, int fd);
-void	ft_get_map_size(char **line, t_data **board);
-int		ft_check_row(char *str, int *pos);
-void	ft_free_allocated_stuff(t_data *board, t_token *token);
+int		atoi_ptr(char **str);
+int 	*str_to_int_conv(char *line, t_data *board, t_hm **en, int y);
+void	get_player(char **line, t_data **board, int fd);
+void	get_map_size(char **line, t_data **board);
+int		**get_map(char **line, t_data *board, int fd);
 void	lets_play(t_data *board, t_token *token);
-t_token	*ft_cut_token(t_token *token);
+t_token	*cut_token(t_token *token);
 int     **get_heatmap(int **map, t_data *board);
-t_token	*ft_get_token(char **line, int fd);
-int		**ft_get_map(char **line, t_data *board, int fd);
+t_token	*get_token(char **line, int fd);
 int     formula(int y, int x, t_crd crd);
+int 	*update_line(char *line, t_hm **new_en, t_data *board, int y);
+int 	**update_map(char **line, t_data *board, int fd);
+void	free_token(t_token *token);
+void	free_board(t_data *board);
 #endif

@@ -114,6 +114,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/olrudenk/CLionProjects/Filler/libft/srcs/ft_toupper.c" "/Users/olrudenk/CLionProjects/Filler/cmake-build-debug/CMakeFiles/Filler.dir/libft/srcs/ft_toupper.c.o"
   "/Users/olrudenk/CLionProjects/Filler/libft/srcs/get_next_line.c" "/Users/olrudenk/CLionProjects/Filler/cmake-build-debug/CMakeFiles/Filler.dir/libft/srcs/get_next_line.c.o"
   "/Users/olrudenk/CLionProjects/Filler/main.c" "/Users/olrudenk/CLionProjects/Filler/cmake-build-debug/CMakeFiles/Filler.dir/main.c.o"
+  "/Users/olrudenk/CLionProjects/Filler/update_data.c" "/Users/olrudenk/CLionProjects/Filler/cmake-build-debug/CMakeFiles/Filler.dir/update_data.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

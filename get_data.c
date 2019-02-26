@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void	ft_get_player(char **line, t_data **board, int fd)
+void	get_player(char **line, t_data **board, int fd)
 {
     int		sign;
 
@@ -33,18 +33,18 @@ void	ft_get_player(char **line, t_data **board, int fd)
     }
 }
 
-void	ft_get_map_size(char **line, t_data **board)
+void	get_map_size(char **line, t_data **board)
 {
     char *tmp;
 
     tmp = *line;
     *line += 8;
-    (*board)->y = ft_atoi_ptr(line);
-    (*board)->x = ft_atoi_ptr(line);
+    (*board)->y = atoi_ptr(line);
+    (*board)->x = atoi_ptr(line);
     free(tmp);
 }
 
-t_token	*ft_get_token(char **line, int fd)
+t_token	*get_token(char **line, int fd)
 {
     int		i;
     char	*tmp;
@@ -54,8 +54,9 @@ t_token	*ft_get_token(char **line, int fd)
     get_next_line(fd, line);
     tmp = *line;
     *line += 6;
-    token->y = ft_atoi_ptr(line);
-    token->x = ft_atoi_ptr(line);
+    token->y = atoi_ptr(line);
+    token->x = atoi_ptr(line);
+//    ft_printf("y%d, x%d\n", token->y, token->x);
     token->token = (char**)malloc(sizeof(char*) * (token->y + 1));
     free(tmp);
     i = -1;
@@ -65,29 +66,75 @@ t_token	*ft_get_token(char **line, int fd)
         token->token[i] = ft_strsub_free(*line, 0, ft_strlen(*line));
     }
     token->token[token->y] = 0;
-    token = ft_cut_token(token);
-//	i = -1;
+    token = cut_token(token);
+	i = -1;
 //	ft_printf("Token:\n");
 //	while (++i < token->y)
 //		ft_printf("%s\n", token->token[i]);
     return (token);
 }
 
-int		**ft_get_map(char **line, t_data *board, int fd)
+int		**get_map(char **line, t_data *board, int fd)
 {
     int	i;
     int	**map;
+	t_hm	*en;
+	t_hm	*head;
 
     i = -1;
     map = (int**)malloc(sizeof(int*) * (board->y));
     board->overlap = 0;
+	en = (t_hm*)malloc(sizeof(t_hm));
+	en->next = NULL;
+	head = en;
     while (++i < board->y)
     {
         get_next_line(fd, line);
+//        ft_dprintf(fd2, "%s\n", *line);
         *line = ft_strsub_free(*line, 4, (size_t)board->x);
-        map[i] = ft_str_to_int_conv(*line, board);
+        map[i] = str_to_int_conv(*line, board, &en, i);
+		en->next = (t_hm*)malloc(sizeof(t_hm));
+		en = en->next;
+		en->next = NULL;
         free(*line);
     }
+//    ft_dprintf(fd2, "%c", '\n');
 	map = get_heatmap(map, board);
+	while (head)
+	{
+		en = head;
+		head = head->next;
+		free(en);
+	}
     return (map);
+}
+
+int 	**update_map(char **line, t_data *board, int fd)
+{
+	int		i;
+	t_hm	*new_en;
+	t_hm	*head;
+
+	i = -1;
+	new_en = (t_hm*)malloc(sizeof(t_hm));
+	new_en->next = NULL;
+	head = new_en;
+	while (++i < board->y)
+	{
+		get_next_line(fd, line);
+        *line = ft_strsub_free(*line, 4, (size_t)board->x);
+        board->map[i] = update_line(*line, &new_en, board, i);
+		new_en->next = (t_hm*)malloc(sizeof(t_hm));
+		new_en = new_en->next;
+		new_en->next = NULL;
+        free(*line);
+	}
+	board->map = apply_heatmap_algorithm(board->map, new_en, board, crd);
+	while (head)
+	{
+		new_en = head;
+		head = head->next;
+		free(new_en);
+	}
+    return (board->map);
 }

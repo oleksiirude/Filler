@@ -14,54 +14,46 @@
 
 int     formula(int y, int x, t_crd crd)
 {
-	int res;
-
-	res = ft_power(y - crd.y, 2) + ft_power(x - crd.x, 2);
-    return (res);
+    return (ft_power(y - crd.y, 2) + ft_power(x - crd.x, 2));
 }
 
-int		ft_check_row(char *str, int *pos)
+int		*str_to_int_conv(char *line, t_data *board, t_hm **en, int y)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '*')
-		{
-			while (str[i] == '*')
-				i++;
-			if (i > *pos)
-				*pos = i;
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-int		*ft_str_to_int_conv(char *line, t_data *board)
-{
-	int i;
+	int x;
 	int *row;
+	int sign;
 
-	i = 0;
+	x = 0;
+	if (board->enemy == P1)
+		sign = P1;
+	else
+		sign = P2;
 	row = (int*)malloc(sizeof(int) * board->x);
-	while (i < board->x)
+	while (x < board->x)
 	{
-		row[i] = 20000;
-		if (line[i] == 'O' || line[i] == 'o')
-			row[i] = O;
-		else if (line[i] == 'X' || line[i] == 'x')
-			row[i] = X;
+		row[x] = 20000;
+		if (line[x] == 'O' || line[x] == 'o')
+			row[x] = O;
+		if (sign == P1)
+		{
+			(*en)->crd.y = y;
+			(*en)->crd.y = x;
+		}
+		else if (line[x] == 'X' || line[x] == 'x')
+			row[x] = X;
+		if (sign == P2)
+		{
+			(*en)->crd.y = y;
+			(*en)->crd.y = x;
+		}
 //		ft_printf("%8d", row[i]);
-		i++;
+		x++;
 	}
 //	ft_printf("\n\n\n\n");
 	return (row);
 }
 
-int		ft_atoi_ptr(char **str)
+int		atoi_ptr(char **str)
 {
 	int	res;
 
@@ -80,26 +72,40 @@ int		ft_atoi_ptr(char **str)
 	return (0);
 }
 
-t_token	*ft_cut_token(t_token *token)
+size_t	initialization(size_t pos, char *ptr, t_token *token, int i)
 {
-    int i;
-    int counter;
-    int max_star_pos;
+	if (!pos)
+		pos = ptr - token->token[i];
+	else if (ptr - token->token[i] > pos)
+		pos = ptr - token->token[i];
+	return (pos);
+}
 
-    i = -1;
-    counter = 0;
-    max_star_pos = 0;
-    while (!ft_check_row(token->token[++i], &max_star_pos))
-        counter++;
-    while (token->token[i] && ft_check_row(token->token[i++], &max_star_pos))
-        counter++;
-    while (token->token[i])
-        free(token->token[i++]);
-    token->x = max_star_pos;
-    token->y = counter;
-    free(token->token[counter]);
-    i = -1;
-    while (++i < token->y)
-        token->token[i][token->x] = 0;
-    return (token);
+t_token	*cut_token(t_token *token)
+{
+	int 	i;
+	int 	counter;
+	char	*ptr;
+	size_t 	pos;
+
+	i = -1;
+	counter = 0;
+	pos = 0;
+	while (!ft_strchr(token->token[++i], '*'))
+		counter++;
+	while (token->token[i] && ft_strchr(token->token[i], '*'))
+	{
+    	ptr = ft_strrchr(token->token[i], '*');
+    	pos = initialization(pos, ptr, token, i);
+    	i++;
+    	counter++;
+	}
+	token->x = (int)pos + 1;
+	while (i < token->y)
+		free(token->token[i++]);
+	token->y = counter;
+	i = 0;
+	while (i < token->y)
+		token->token[i++][token->x] = 0;
+	return (token);
 }

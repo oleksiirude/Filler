@@ -12,7 +12,18 @@
 
 #include "filler.h"
 
-void	ft_free_allocated_stuff(t_data *board, t_token *token)
+void	free_token(t_token *token)
+{
+	int i;
+
+	i = -1;
+	while (++i < token->y)
+		free(token->token[i]);
+	free(token->token);
+	free(token);
+}
+
+void	free_board(t_data *board)
 {
 	int i;
 
@@ -20,9 +31,4 @@ void	ft_free_allocated_stuff(t_data *board, t_token *token)
 	while (++i < board->y)
 		free(board->map[i]);
 	free(board->map);
-	i = -1;
-	while (++i < token->y)
-		free(token->token[i]);
-	free(token->token);
-	free(token);
 }
