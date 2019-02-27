@@ -68,18 +68,19 @@ typedef struct		s_hm
 }					t_hm;
 
 int		atoi_ptr(char **str);
-int 	*str_to_int_conv(char *line, t_data *board, t_hm **en, int y);
+int 	*create_row(char *line, t_data *board, t_hm **en, int y);
 void	get_player(char **line, t_data **board, int fd);
 void	get_map_size(char **line, t_data **board);
 int		**get_map(char **line, t_data *board, int fd);
 void	lets_play(t_data *board, t_token *token);
 t_token	*cut_token(t_token *token);
-int     **get_heatmap(int **map, t_data *board);
 t_token	*get_token(char **line, int fd);
 int     formula(int y, int x, t_crd crd);
 int 	*update_line(char *line, t_hm **new_en, t_data *board, int y);
 int 	**update_map(char **line, t_data *board, int fd);
 void	free_token(t_token *token);
 void	free_board(t_data *board);
+void	free_enemy_struct(t_hm **head, t_hm **enemy);
 int		**apply_heatmap_algorithm(int **map, t_hm *en, t_data *board);
+void	write_down_enemy_crd(int y, int x, t_hm **en);
 #endif

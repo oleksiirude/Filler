@@ -12,6 +12,18 @@
 
 #include "filler.h"
 
+void	free_enemy_struct(t_hm **head, t_hm **enemy)
+{
+	while ((*head)->next)
+	{
+		*enemy = *head;
+		*head = (*head)->next;
+		free((*enemy)->crd);
+		free(*enemy);
+	}
+	free(*head);
+}
+
 void	free_token(t_token *token)
 {
 	int i;

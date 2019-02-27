@@ -12,13 +12,17 @@
 
 #include "filler.h"
 
+int	formula(int y, int x, t_crd crd)
+{
+	return (ft_power(y - crd.y, 2) + ft_power(x - crd.x, 2));
+}
+
 int	**apply_heatmap_algorithm(int **map, t_hm *enemy, t_data *board)
 {
 	t_crd	crd;
 	int		res;
 
-	crd.y = 0;
-	crd.x = 0;
+	ft_bzero(&crd, 8);
 	while (enemy->next)
 	{
 		while (crd.y < board->y)

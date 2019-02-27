@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-int *update_line(char *line, t_hm **new_en, t_data *board, int y)
+int	*update_line(char *line, t_hm **new_en, t_data *board, int y)
 {
 	int x;
 	int *row;
@@ -20,36 +20,19 @@ int *update_line(char *line, t_hm **new_en, t_data *board, int y)
 
 	x = 0;
 	row = board->map[y];
-	if (board->enemy == P1)
-		sign = P1;
-	else
-		sign = P2;
+	sign = board->enemy == -1 ? P1 : P2;
 	while (x < board->x)
 	{
 		if ((line[x] == 'O' || line[x] == 'o') && row[x] != O)
 		{
 			if (sign == P1)
-			{
-				(*new_en)->crd = (t_crd*)malloc(sizeof(t_crd));
-				(*new_en)->crd->y = y;
-				(*new_en)->crd->x = x;
-				(*new_en)->next = (t_hm*)malloc(sizeof(t_hm));
-				(*new_en) = (*new_en)->next;
-				(*new_en)->next = NULL;
-			}
+				write_down_enemy_crd(y, x, new_en);
 			row[x] = O;
 		}
-		else if ((line[x] == 'X' || line[x] == 'x') && row[x]!= X)
+		else if ((line[x] == 'X' || line[x] == 'x') && row[x] != X)
 		{
 			if (sign == P2)
-			{
-				(*new_en)->crd = (t_crd*)malloc(sizeof(t_crd));
-				(*new_en)->crd->y = y;
-				(*new_en)->crd->x = x;
-				(*new_en)->next = (t_hm*)malloc(sizeof(t_hm));
-				(*new_en) = (*new_en)->next;
-				(*new_en)->next = NULL;
-			}
+				write_down_enemy_crd(y, x, new_en);
 			row[x] = X;
 		}
 		x++;

@@ -12,22 +12,24 @@
 
 #include "filler.h"
 
-int     formula(int y, int x, t_crd crd)
+void	write_down_enemy_crd(int y, int x, t_hm **en)
 {
-    return (ft_power(y - crd.y, 2) + ft_power(x - crd.x, 2));
+	(*en)->crd = (t_crd*)malloc(sizeof(t_crd));
+	(*en)->crd->y = y;
+	(*en)->crd->x = x;
+	(*en)->next = (t_hm*)malloc(sizeof(t_hm));
+	(*en) = (*en)->next;
+	(*en)->next = NULL;
 }
 
-int		*str_to_int_conv(char *line, t_data *board, t_hm **en, int y)
+int		*create_row(char *line, t_data *board, t_hm **en, int y)
 {
 	int x;
 	int *row;
 	int sign;
 
 	x = 0;
-	if (board->enemy == P1)
-		sign = P1;
-	else
-		sign = P2;
+	sign = board->enemy == -1 ? P1 : P2;
 	row = (int*)malloc(sizeof(int) * board->x);
 	while (x < board->x)
 	{
@@ -36,32 +38,16 @@ int		*str_to_int_conv(char *line, t_data *board, t_hm **en, int y)
 		{
 			row[x] = O;
 			if (sign == P1)
-			{
-				(*en)->crd = (t_crd*)malloc(sizeof(t_crd));
-				(*en)->crd->y = y;
-				(*en)->crd->x = x;
-				(*en)->next = (t_hm*)malloc(sizeof(t_hm));
-				(*en) = (*en)->next;
-				(*en)->next = NULL;
-			}
+				write_down_enemy_crd(y, x, en);
 		}
 		else if (line[x] == 'X' || line[x] == 'x')
 		{
 			row[x] = X;
 			if (sign == P2)
-			{
-				(*en)->crd = (t_crd*)malloc(sizeof(t_crd));
-				(*en)->crd->y = y;
-				(*en)->crd->x = x;
-				(*en)->next = (t_hm*)malloc(sizeof(t_hm));
-				(*en) = (*en)->next;
-				(*en)->next = NULL;
-			}
+				write_down_enemy_crd(y, x, en);
 		}
-		//	ft_printf("%8d", row[i]);
 		x++;
 	}
-//	ft_printf("\n\n\n\n");
 	return (row);
 }
 
@@ -95,10 +81,10 @@ size_t	initialization(size_t pos, char *ptr, t_token *token, int i)
 
 t_token	*cut_token(t_token *token)
 {
-	int 	i;
-	int 	counter;
+	int		i;
+	int		counter;
 	char	*ptr;
-	size_t 	pos;
+	size_t	pos;
 
 	i = -1;
 	counter = 0;
@@ -107,10 +93,10 @@ t_token	*cut_token(t_token *token)
 		counter++;
 	while (token->token[i] && ft_strchr(token->token[i], '*'))
 	{
-    	ptr = ft_strrchr(token->token[i], '*');
-    	pos = initialization(pos, ptr, token, i);
-    	i++;
-    	counter++;
+		ptr = ft_strrchr(token->token[i], '*');
+		pos = initialization(pos, ptr, token, i);
+		i++;
+		counter++;
 	}
 	token->x = (int)pos + 1;
 	while (i < token->y)
