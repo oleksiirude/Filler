@@ -12,12 +12,12 @@
 
 #include "filler.h"
 
-void	get_player(char **line, t_data **board, int fd)
+void	get_player(char **line, t_data **board)
 {
 	int		sign;
 
 	sign = 0;
-	get_next_line(fd, line);
+	get_next_line(0, line);
 	if (line[0][10] == '1')
 		sign = 1;
 	free(*line);
@@ -44,14 +44,14 @@ void	get_map_size(char **line, t_data **board)
 	free(tmp);
 }
 
-t_token	*get_token(char **line, int fd)
+t_token	*get_token(char **line)
 {
 	int		i;
 	char	*tmp;
 	t_token	*token;
 
 	token = (t_token*)malloc(sizeof(t_token));
-	get_next_line(fd, line);
+	get_next_line(0, line);
 	tmp = *line;
 	*line += 6;
 	token->y = atoi_ptr(line);
@@ -61,7 +61,7 @@ t_token	*get_token(char **line, int fd)
 	i = -1;
 	while (++i < token->y)
 	{
-		get_next_line(fd, line);
+		get_next_line(0, line);
 		token->token[i] = ft_strsub_free(*line, 0, ft_strlen(*line));
 	}
 	token->token[token->y] = 0;
@@ -69,7 +69,7 @@ t_token	*get_token(char **line, int fd)
 	return (token);
 }
 
-int		**get_map(char **line, t_data *board, int fd)
+int		**get_map(char **line, t_data *board)
 {
 	int		i;
 	int		**map;
@@ -84,7 +84,7 @@ int		**get_map(char **line, t_data *board, int fd)
 	head = en;
 	while (++i < board->y)
 	{
-		get_next_line(fd, line);
+		get_next_line(0, line);
 		*line = ft_strsub_free(*line, 4, (size_t)board->x);
 		map[i] = create_row(*line, board, &en, i);
 		free(*line);
@@ -94,7 +94,7 @@ int		**get_map(char **line, t_data *board, int fd)
 	return (map);
 }
 
-int		**update_map(char **line, t_data *board, int fd)
+int		**update_map(char **line, t_data *board)
 {
 	int		i;
 	t_hm	*new_en;
@@ -106,7 +106,7 @@ int		**update_map(char **line, t_data *board, int fd)
 	head = new_en;
 	while (++i < board->y)
 	{
-		get_next_line(fd, line);
+		get_next_line(0, line);
 		*line = ft_strsub_free(*line, 4, (size_t)board->x);
 		board->map[i] = update_line(*line, &new_en, board, i);
 		free(*line);

@@ -12,115 +12,107 @@
 
 #include "filler.h"
 
-int 	get_sum(t_data *board, t_token *token, t_crd reply)
+int		get_sum(t_data *board, t_token *token, t_reply reply)
 {
 	t_crd	crd;
 	int		sum;
-	int 	start_x;
+	int		start_x;
 
 	sum = 0;
-	start_x = reply.x;
+	start_x = reply.g_x;
 	ft_bzero(&crd, 8);
 	while (crd.y < token->y)
 	{
 		while (crd.x < token->x)
 		{
-			if (board->map[reply.y][reply.x] != board->player)
-				sum += board->map[reply.y][reply.x];
+			if (board->map[reply.g_y][reply.g_x] != board->player)
+				sum += board->map[reply.g_y][reply.g_x];
 			crd.x++;
-			reply.x++;
+			reply.g_x++;
 		}
 		crd.y++;
 		crd.x = 0;
-		reply.x = start_x;
-		reply.y++;
+		reply.g_x = start_x;
+		reply.g_y++;
 	}
 	return (sum);
 }
 
-void	to_zero(t_points *p, t_reply *reply, t_crd *global)
+void	to_zero(t_points *p, t_reply *reply, int *sign)
 {
 	ft_bzero(p, 16);
 	ft_bzero(reply, 24);
-	ft_bzero(global, 8);
+	*sign = 0;
 }
 
-void	lets_play(t_data *board, t_token *token)
+void	if_valid_overlap(t_reply *reply, t_data *board, t_token *token, int *s)
+{
+	*s = 1;
+	(*reply).sum = get_sum(board, token, *reply);
+	if (!(*reply).res)
+	{
+		(*reply).res = (*reply).sum;
+		(*reply).y_res = (*reply).g_y;
+		(*reply).x_res = (*reply).g_x;
+	}
+	else if ((*reply).res > (*reply).sum)
+	{
+		(*reply).res = (*reply).sum;
+		(*reply).y_res = (*reply).g_y;
+		(*reply).x_res = (*reply).g_x;
+	}
+}
+
+void	inside_loops(t_points *p, t_token *token, t_data **b, t_reply *reply)
+{
+	while ((*p).t.y < token->y)
+	{
+		(*p).m.x = (*reply).g_x;
+		while ((*p).t.x < token->x)
+		{
+			if ((*b)->map[(*p).m.y][(*p).m.x] == (*b)->player
+					&& token->token[(*p).t.y][(*p).t.x] == '*')
+				(*b)->overlap++;
+			else if ((*b)->map[(*p).m.y][(*p).m.x] == (*b)->enemy
+					&& token->token[(*p).t.y][(*p).t.x] == '*')
+			{
+				(*b)->overlap = 0;
+				(*b)->error = 1;
+				break ;
+			}
+			(*p).t.x++;
+			(*p).m.x++;
+		}
+		(*p).m.y++;
+		(*p).t.y++;
+		(*p).t.x = 0;
+		if ((*b)->error)
+			break ;
+	}
+}
+
+void	lets_play(t_data *board, t_token *token, int sign)
 {
 	t_points	p;
 	t_reply		reply;
-	t_crd		global;
-	int			error;
-	int			sign;
 
-	to_zero(&p, &reply, &global);
-	sign = 0;
-	error = 0;
-	while (global.y + (token->y - 1) < board->y)
+	to_zero(&p, &reply, &sign);
+	while (reply.g_y + (token->y - 1) < board->y)
 	{
-		while (global.x + (token->x - 1) < board->x)
+		while (reply.g_x + (token->x - 1) < board->x)
 		{
-			while (p.t.y < token->y)
-			{
-				p.m.x = global.x;
-				while (p.t.x < token->x)
-				{
-					if (board->map[p.m.y][p.m.x] == board->player && token->token[p.t.y][p.t.x] == '*')
-						board->overlap++;
-					else if (board->map[p.m.y][p.m.x] == board->enemy && token->token[p.t.y][p.t.x] == '*')
-					{
-						board->overlap = 0;
-						error = 1;
-						break;
-					}
-					p.t.x++;
-					p.m.x++;
-				}
-				p.m.y++;
-				p.t.y++;
-				p.t.x = 0;
-				if (error)
-					break ;
-			}
+			inside_loops(&p, token, &board, &reply);
 			if (board->overlap == 1)
-			{
-				sign = 1;
-				reply.sum = get_sum(board, token, global);
-//				ft_printf("sum: %d\n", reply.sum);
-//				ft_printf("crd: %d %d\n", global.y, global.x);
-				if (!reply.res)
-				{
-					reply.res = reply.sum;
-					reply.y_res = global.y;
-					reply.x_res = global.x;
-				}
-				else if (reply.res > reply.sum)
-				{
-					reply.res = reply.sum;
-					reply.y_res = global.y;
-					reply.x_res = global.x;
-				}
-//				ft_printf("res: %d\n\n", reply.res);
-//				ft_printf("%d %d\n", global.y, global.x);
-//				sign = 1;
-//				break ;
-			}
-			global.x++;
-			p.m.y = global.y;
+				if_valid_overlap(&reply, board, token, &sign);
+			reply.g_x++;
+			p.m.y = reply.g_y;
 			p.t.y = 0;
 			board->overlap = 0;
-			error = 0;
+			board->error = 0;
 		}
-//		if (sign)
-//			break ;
-		global.y++;
-		p.m.y = global.y;
-		global.x = 0;
+		reply.g_y++;
+		p.m.y = reply.g_y;
+		reply.g_x = 0;
 	}
-//	ft_printf("sing: %d\n", sign);
-//	ft_printf("final res: %d\n", reply.res);
-	if (!sign)
-		ft_printf("%d %d\n", 0, 0);
-	else
-		ft_printf("%d %d\n", reply.y_res, reply.x_res);
+	reply_crd(sign, reply);
 }

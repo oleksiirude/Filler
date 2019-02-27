@@ -14,27 +14,25 @@
 
 int		main(void)
 {
-	int		fd;
 	int		sign;
 	char	*line;
 	t_data	*board;
 	t_token	*token;
 
 	sign = 0;
-//	fd = open("../test", O_RDWR);
-	fd = 0;
 	board = (t_data*)malloc(sizeof(t_data));
-	get_player(&line, &board, fd);
+	get_player(&line, &board);
 	board->map = NULL;
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		sign ? free(line) : get_map_size(&line, &board);
-		get_next_line(fd, &line);
+		get_next_line(0, &line);
 		free(line);
-		board->map = board->map ? update_map(&line, board, fd)
-				: get_map(&line, board, fd);
-		token = get_token(&line, fd);
-		lets_play(board, token);
+		board->map = board->map ? update_map(&line, board)
+				: get_map(&line, board);
+		token = get_token(&line);
+		board->error = 0;
+		lets_play(board, token, sign);
 		free_token(token);
 		sign = 1;
 	}

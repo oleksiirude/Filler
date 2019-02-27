@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxiliary.c                                        :+:      :+:    :+:   */
+/*   heatmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olrudenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,7 +17,7 @@ int	formula(int y, int x, t_crd crd)
 	return (ft_power(y - crd.y, 2) + ft_power(x - crd.x, 2));
 }
 
-int	**apply_heatmap_algorithm(int **map, t_hm *enemy, t_data *board)
+int	**apply_heatmap_algorithm(int **map, t_hm *enemy, t_data *b)
 {
 	t_crd	crd;
 	int		res;
@@ -25,10 +25,10 @@ int	**apply_heatmap_algorithm(int **map, t_hm *enemy, t_data *board)
 	ft_bzero(&crd, 8);
 	while (enemy->next)
 	{
-		while (crd.y < board->y)
+		while (crd.y < b->y)
 		{
-			while (crd.x < board->x)
-				if (map[crd.y][crd.x] == board->player)
+			while (crd.x < b->x)
+				if (map[crd.y][crd.x] == b->player)
 					crd.x++;
 				else
 				{

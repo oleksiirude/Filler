@@ -70,11 +70,11 @@ int		atoi_ptr(char **str)
 	return (0);
 }
 
-size_t	initialization(size_t pos, char *ptr, t_token *token, int i)
+long	initialization(long pos, char *ptr, t_token *token, int i)
 {
 	if (!pos)
 		pos = ptr - token->token[i];
-	else if (ptr - token->token[i] > pos)
+	else if ((ptr - token->token[i]) > pos)
 		pos = ptr - token->token[i];
 	return (pos);
 }
@@ -84,7 +84,7 @@ t_token	*cut_token(t_token *token)
 	int		i;
 	int		counter;
 	char	*ptr;
-	size_t	pos;
+	long	pos;
 
 	i = -1;
 	counter = 0;

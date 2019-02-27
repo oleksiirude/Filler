@@ -12,16 +12,16 @@
 
 #include "filler.h"
 
-int	*update_line(char *line, t_hm **new_en, t_data *board, int y)
+int		*update_line(char *line, t_hm **new_en, t_data *b, int y)
 {
 	int x;
 	int *row;
 	int sign;
 
 	x = 0;
-	row = board->map[y];
-	sign = board->enemy == -1 ? P1 : P2;
-	while (x < board->x)
+	row = b->map[y];
+	sign = b->enemy == -1 ? P1 : P2;
+	while (x < b->x)
 	{
 		if ((line[x] == 'O' || line[x] == 'o') && row[x] != O)
 		{
@@ -38,4 +38,12 @@ int	*update_line(char *line, t_hm **new_en, t_data *board, int y)
 		x++;
 	}
 	return (row);
+}
+
+void	reply_crd(int sign, t_reply reply)
+{
+	if (!sign)
+		ft_printf("%d %d\n", 0, 0);
+	else
+		ft_printf("%d %d\n", reply.y_res, reply.x_res);
 }
