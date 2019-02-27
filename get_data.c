@@ -94,10 +94,8 @@ int		**get_map(char **line, t_data *board, int fd)
         map[i] = str_to_int_conv(*line, board, &en, i);
         free(*line);
     }
-	board->map = map;
-//	apply_heatmap_algorithm(board->map, en, board);
+	board->map = apply_heatmap_algorithm(map, head, board);
 //    ft_print_intarr(board->map, board->y, board->x);
-	ft_printf("\n");
 	while (head->next)
 	{
 		en = head;
@@ -124,7 +122,7 @@ int 	**update_map(char **line, t_data *board, int fd)
         board->map[i] = update_line(*line, &new_en, board, i);
         free(*line);
 	}
-//	apply_heatmap_algorithm(board->map, new_en, board);
+	board->map = apply_heatmap_algorithm(board->map, head, board);
 //	ft_print_intarr(board->map, board->y, board->x);
 	while (head->next)
 	{

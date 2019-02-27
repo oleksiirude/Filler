@@ -12,14 +12,14 @@
 
 #include "filler.h"
 
-void	apply_heatmap_algorithm(int **map, t_hm *en, t_data *board)
+int	**apply_heatmap_algorithm(int **map, t_hm *enemy, t_data *board)
 {
 	t_crd	crd;
 	int		res;
 
 	crd.y = 0;
 	crd.x = 0;
-	while (en->next)
+	while (enemy->next)
 	{
 		while (crd.y < board->y)
 		{
@@ -28,7 +28,7 @@ void	apply_heatmap_algorithm(int **map, t_hm *en, t_data *board)
 					crd.x++;
 				else
 				{
-					res = formula(en->crd->y, en->crd->x, crd);
+					res = formula(enemy->crd->y, enemy->crd->x, crd);
 					if (map[crd.y][crd.x] > res)
 						map[crd.y][crd.x] = res;
 					crd.x++;
@@ -36,7 +36,8 @@ void	apply_heatmap_algorithm(int **map, t_hm *en, t_data *board)
 			crd.x = 0;
 			crd.y++;
 		}
-		en = en->next;
+		enemy = enemy->next;
 		crd.y = 0;
 	}
+	return (map);
 }
