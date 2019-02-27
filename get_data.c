@@ -100,8 +100,10 @@ int		**get_map(char **line, t_data *board, int fd)
 	{
 		en = head;
 		head = head->next;
+		free(en->crd);
 		free(en);
 	}
+	free(head);
     return (map);
 }
 
@@ -128,7 +130,9 @@ int 	**update_map(char **line, t_data *board, int fd)
 	{
 		new_en = head;
 		head = head->next;
+		free(new_en->crd);
 		free(new_en);
 	}
+	free(head);
     return (board->map);
 }

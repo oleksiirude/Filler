@@ -14,7 +14,6 @@
 
 int		main(void)
 {
-//	int 	fd2;
 	int		fd;
 	int		sign;
 	char	*line;
@@ -22,9 +21,9 @@ int		main(void)
 	t_token	*token;
 
 //	fd2 = open("./log.txt", O_RDWR | O_TRUNC);
-//	fd = open("../map00", O_RDWR);
+	fd = open("../test", O_RDWR);
 //	ft_printf("fd1->%d fd2->%d\n", fd, fd2);
-	fd = 0;
+//	fd = 0;
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));
 	get_player(&line, &board, fd);
@@ -47,6 +46,6 @@ int		main(void)
 		sign = 1;
 	}
 	free_board(board);
-//	system("leaks -q Filler");
+	system("leaks -q Filler");
 	return (0);
 }
