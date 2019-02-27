@@ -63,7 +63,7 @@ typedef struct		s_points
 
 typedef struct		s_hm
 {
-	struct s_crd    crd;
+	struct s_crd    *crd;
 	struct s_hm		*next;
 }					t_hm;
 
@@ -81,4 +81,5 @@ int 	*update_line(char *line, t_hm **new_en, t_data *board, int y);
 int 	**update_map(char **line, t_data *board, int fd);
 void	free_token(t_token *token);
 void	free_board(t_data *board);
+void	apply_heatmap_algorithm(int **map, t_hm *en, t_data *board);
 #endif

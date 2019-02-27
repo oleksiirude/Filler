@@ -33,20 +33,32 @@ int		*str_to_int_conv(char *line, t_data *board, t_hm **en, int y)
 	{
 		row[x] = 20000;
 		if (line[x] == 'O' || line[x] == 'o')
-			row[x] = O;
-		if (sign == P1)
 		{
-			(*en)->crd.y = y;
-			(*en)->crd.y = x;
+			row[x] = O;
+			if (sign == P1)
+			{
+				(*en)->crd = (t_crd*)malloc(sizeof(t_crd));
+				(*en)->crd->y = y;
+				(*en)->crd->x = x;
+				(*en)->next = (t_hm*)malloc(sizeof(t_hm));
+				(*en) = (*en)->next;
+				(*en)->next = NULL;
+			}
 		}
 		else if (line[x] == 'X' || line[x] == 'x')
-			row[x] = X;
-		if (sign == P2)
 		{
-			(*en)->crd.y = y;
-			(*en)->crd.y = x;
+			row[x] = X;
+			if (sign == P2)
+			{
+				(*en)->crd = (t_crd*)malloc(sizeof(t_crd));
+				(*en)->crd->y = y;
+				(*en)->crd->x = x;
+				(*en)->next = (t_hm*)malloc(sizeof(t_hm));
+				(*en) = (*en)->next;
+				(*en)->next = NULL;
+			}
 		}
-//		ft_printf("%8d", row[i]);
+		//	ft_printf("%8d", row[i]);
 		x++;
 	}
 //	ft_printf("\n\n\n\n");

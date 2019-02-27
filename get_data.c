@@ -90,17 +90,15 @@ int		**get_map(char **line, t_data *board, int fd)
     while (++i < board->y)
     {
         get_next_line(fd, line);
-//        ft_dprintf(fd2, "%s\n", *line);
         *line = ft_strsub_free(*line, 4, (size_t)board->x);
         map[i] = str_to_int_conv(*line, board, &en, i);
-		en->next = (t_hm*)malloc(sizeof(t_hm));
-		en = en->next;
-		en->next = NULL;
         free(*line);
     }
-//    ft_dprintf(fd2, "%c", '\n');
-	map = get_heatmap(map, board);
-	while (head)
+	board->map = map;
+//	apply_heatmap_algorithm(board->map, en, board);
+//    ft_print_intarr(board->map, board->y, board->x);
+	ft_printf("\n");
+	while (head->next)
 	{
 		en = head;
 		head = head->next;
@@ -124,13 +122,11 @@ int 	**update_map(char **line, t_data *board, int fd)
 		get_next_line(fd, line);
         *line = ft_strsub_free(*line, 4, (size_t)board->x);
         board->map[i] = update_line(*line, &new_en, board, i);
-		new_en->next = (t_hm*)malloc(sizeof(t_hm));
-		new_en = new_en->next;
-		new_en->next = NULL;
         free(*line);
 	}
-	board->map = apply_heatmap_algorithm(board->map, new_en, board, crd);
-	while (head)
+//	apply_heatmap_algorithm(board->map, new_en, board);
+//	ft_print_intarr(board->map, board->y, board->x);
+	while (head->next)
 	{
 		new_en = head;
 		head = head->next;

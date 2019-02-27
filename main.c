@@ -22,9 +22,9 @@ int		main(void)
 	t_token	*token;
 
 //	fd2 = open("./log.txt", O_RDWR | O_TRUNC);
-//	fd = open("../test", O_RDWR);
+	fd = open("../map00", O_RDWR);
 //	ft_printf("fd1->%d fd2->%d\n", fd, fd2);
-	fd = 0;
+//	fd = 0;
 	sign = 0;
 	board = (t_data*)malloc(sizeof(t_data));
 	get_player(&line, &board, fd);

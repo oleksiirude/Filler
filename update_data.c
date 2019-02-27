@@ -30,8 +30,12 @@ int *update_line(char *line, t_hm **new_en, t_data *board, int y)
 		{
 			if (sign == P1)
 			{
-				(*new_en)->crd.y = y;
-				(*new_en)->crd.y = x;
+				(*new_en)->crd = (t_crd*)malloc(sizeof(t_crd));
+				(*new_en)->crd->y = y;
+				(*new_en)->crd->x = x;
+				(*new_en)->next = (t_hm*)malloc(sizeof(t_hm));
+				(*new_en) = (*new_en)->next;
+				(*new_en)->next = NULL;
 			}
 			row[x] = O;
 		}
@@ -39,8 +43,12 @@ int *update_line(char *line, t_hm **new_en, t_data *board, int y)
 		{
 			if (sign == P2)
 			{
-				(*new_en)->crd.y = y;
-				(*new_en)->crd.y = x;
+				(*new_en)->crd = (t_crd*)malloc(sizeof(t_crd));
+				(*new_en)->crd->y = y;
+				(*new_en)->crd->x = x;
+				(*new_en)->next = (t_hm*)malloc(sizeof(t_hm));
+				(*new_en) = (*new_en)->next;
+				(*new_en)->next = NULL;
 			}
 			row[x] = X;
 		}
