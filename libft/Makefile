@@ -112,7 +112,6 @@ SRCS = $(addprefix ./srcs/, $(SRCS_LIB) $(addprefix ft_printf/, $(SRCS_PF)))
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME);
-	@echo $(SRCS)
 
 $(NAME): $(OBJS)
 	@echo "\033[33mCreating libft.a...\033[0m"
