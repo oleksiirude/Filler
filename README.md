@@ -1,11 +1,11 @@
 # Filler
 This project at UNIT Factory (School 42) is about creating a bot player that plays with another bots.
 
-Game managed by Virtual Machine that takes answers from bot players (coordinates where bot want to put token).
+Game managed by Virtual Machine that gives random tokens to players and takes answers from players (coordinates where bot want to put token).
 
-Game stops for bot who gives to VM [0, 0] coordinates.
+Game stops for bot who cannot allocate given token.
 
-When both players give zero coordinates, game stops, VM counts total score and it's game over.
+When both players cannot allocate given token, game stops, VM counts total score and it's game over.
 
 ![alt text](https://github.com/oleksiirude/Filler/blob/master/img/map02.png)
 
