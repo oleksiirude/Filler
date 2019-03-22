@@ -3,7 +3,7 @@ This project at UNIT Factory (School 42) is about creating a bot player that pla
 
 Game managed by Virtual Machine that gives random tokens to players and takes answers from players (coordinates where bot want to put token).
 
-Game stops for bot who cannot allocate given token on the map or gives not valid coordinates.
+Game stops for bot who cannot allocates given token on the map or gives not valid coordinates.
 
 When both players cannot allocate given token, game stops, VM counts total score and it's game over.
 
